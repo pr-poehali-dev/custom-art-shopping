@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -6,9 +7,23 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import Icon from '@/components/ui/icon';
 import { Badge } from '@/components/ui/badge';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { useToast } from '@/hooks/use-toast';
 
 const Index = () => {
+  const navigate = useNavigate();
+  const { toast } = useToast();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isOrderDialogOpen, setIsOrderDialogOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  const [orderForm, setOrderForm] = useState({
+    theme: '',
+    description: '',
+    budget: '',
+    deadline: '',
+    contact: ''
+  });
 
   const reviews = [
     {
@@ -199,7 +214,7 @@ const Index = () => {
               </div>
             </section>
 
-            <section className="space-y-12 animate-fade-in">
+            <section id="order-section" className="space-y-12 animate-fade-in">
               <div className="text-center space-y-4">
                 <h3 className="text-4xl font-bold">Создать заказ</h3>
                 <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -207,49 +222,93 @@ const Index = () => {
                 </p>
               </div>
 
-              <Card className="max-w-2xl mx-auto border-2 shadow-xl">
-                <CardHeader>
-                  <CardTitle className="text-2xl">Форма индивидуального заказа</CardTitle>
-                  <CardDescription className="text-base">
-                    Заполните форму, и мы найдём лучших художников для вашего проекта
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                  <div className="space-y-2">
-                    <Label htmlFor="theme" className="text-base">Тема арта *</Label>
-                    <Input id="theme" placeholder="Например: портрет, пейзаж, логотип..." className="h-12 text-base" />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="description" className="text-base">Подробное описание *</Label>
-                    <Textarea 
-                      id="description" 
-                      placeholder="Опишите стиль, цвета, настроение, референсы..."
-                      className="min-h-32 text-base"
-                    />
-                  </div>
-
-                  <div className="grid md:grid-cols-2 gap-4">
+              <Dialog open={isOrderDialogOpen} onOpenChange={setIsOrderDialogOpen}>
+                <Card className="max-w-2xl mx-auto border-2 shadow-xl">
+                  <CardHeader>
+                    <CardTitle className="text-2xl">Форма индивидуального заказа</CardTitle>
+                    <CardDescription className="text-base">
+                      Заполните форму, и мы найдём лучших художников для вашего проекта
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-6">
                     <div className="space-y-2">
-                      <Label htmlFor="budget" className="text-base">Бюджет (₽) *</Label>
-                      <Input id="budget" type="number" placeholder="от 20" className="h-12 text-base" />
+                      <Label htmlFor="theme" className="text-base">Тема арта *</Label>
+                      <Input 
+                        id="theme" 
+                        value={orderForm.theme}
+                        onChange={(e) => setOrderForm({...orderForm, theme: e.target.value})}
+                        placeholder="Например: портрет, пейзаж, логотип..." 
+                        className="h-12 text-base" 
+                      />
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="deadline" className="text-base">Срок (дней)</Label>
-                      <Input id="deadline" type="number" placeholder="3-7 дней" className="h-12 text-base" />
+                      <Label htmlFor="description" className="text-base">Подробное описание *</Label>
+                      <Textarea 
+                        id="description"
+                        value={orderForm.description}
+                        onChange={(e) => setOrderForm({...orderForm, description: e.target.value})}
+                        placeholder="Опишите стиль, цвета, настроение, референсы..."
+                        className="min-h-32 text-base"
+                      />
                     </div>
-                  </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="contact" className="text-base">Контакт (email или Telegram) *</Label>
-                    <Input id="contact" placeholder="@username или email@example.com" className="h-12 text-base" />
-                  </div>
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="budget" className="text-base">Бюджет (₽) *</Label>
+                        <Input 
+                          id="budget" 
+                          type="number"
+                          value={orderForm.budget}
+                          onChange={(e) => setOrderForm({...orderForm, budget: e.target.value})}
+                          placeholder="от 20" 
+                          className="h-12 text-base" 
+                        />
+                      </div>
 
-                  <Button className="w-full h-14 text-lg gradient-primary hover:scale-105 transition-transform">
-                    <Icon name="Send" className="mr-2" />
-                    Отправить заказ
-                  </Button>
+                      <div className="space-y-2">
+                        <Label htmlFor="deadline" className="text-base">Срок (дней)</Label>
+                        <Input 
+                          id="deadline" 
+                          type="number"
+                          value={orderForm.deadline}
+                          onChange={(e) => setOrderForm({...orderForm, deadline: e.target.value})}
+                          placeholder="3-7 дней" 
+                          className="h-12 text-base" 
+                        />
+                      </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="contact" className="text-base">Контакт (email или Telegram) *</Label>
+                      <Input 
+                        id="contact"
+                        value={orderForm.contact}
+                        onChange={(e) => setOrderForm({...orderForm, contact: e.target.value})}
+                        placeholder="@username или email@example.com" 
+                        className="h-12 text-base" 
+                      />
+                    </div>
+
+                    <DialogTrigger asChild>
+                      <Button 
+                        onClick={() => {
+                          if (!orderForm.theme || !orderForm.description || !orderForm.budget || !orderForm.contact) {
+                            toast({
+                              title: "Заполните все обязательные поля",
+                              description: "Отметьте поля со звездочкой (*)",
+                              variant: "destructive"
+                            });
+                            return;
+                          }
+                          setIsOrderDialogOpen(true);
+                        }}
+                        className="w-full h-14 text-lg gradient-primary hover:scale-105 transition-transform"
+                      >
+                        <Icon name="Send" className="mr-2" />
+                        Отправить заказ
+                      </Button>
+                    </DialogTrigger>
 
                   <div className="space-y-4">
                     <div className="p-4 rounded-lg bg-green-900/20 border border-green-700">
@@ -288,6 +347,112 @@ const Index = () => {
                   </div>
                 </CardContent>
               </Card>
+
+              <DialogContent className="max-w-lg">
+                <DialogHeader>
+                  <DialogTitle className="text-2xl">Подтверждение заказа</DialogTitle>
+                  <DialogDescription className="text-base">
+                    Проверьте детали вашего заказа перед отправкой
+                  </DialogDescription>
+                </DialogHeader>
+                
+                <div className="space-y-4 py-4">
+                  <div className="p-4 rounded-lg bg-card space-y-3">
+                    <div>
+                      <p className="text-sm text-muted-foreground">Тема</p>
+                      <p className="font-medium">{orderForm.theme}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-muted-foreground">Описание</p>
+                      <p className="font-medium">{orderForm.description}</p>
+                    </div>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <p className="text-sm text-muted-foreground">Бюджет</p>
+                        <p className="font-medium">{orderForm.budget}₽</p>
+                      </div>
+                      {orderForm.deadline && (
+                        <div>
+                          <p className="text-sm text-muted-foreground">Срок</p>
+                          <p className="font-medium">{orderForm.deadline} дней</p>
+                        </div>
+                      )}
+                    </div>
+                    <div>
+                      <p className="text-sm text-muted-foreground">Контакт</p>
+                      <p className="font-medium">{orderForm.contact}</p>
+                    </div>
+                  </div>
+
+                  <div className="p-4 rounded-lg bg-blue-900/20 border border-blue-700">
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-2">
+                        <Icon name="CreditCard" className="text-blue-400" size={20} />
+                        <p className="font-semibold text-blue-300">Способы оплаты</p>
+                      </div>
+                      <div className="flex flex-wrap gap-3">
+                        <div className="flex items-center gap-2 px-4 py-2 bg-gray-800 rounded-lg border border-orange-500">
+                          <Icon name="CreditCard" className="text-orange-400" size={20} />
+                          <span className="text-sm font-medium text-orange-300">Банковская карта</span>
+                        </div>
+                        <div className="flex items-center gap-2 px-4 py-2 bg-gray-800 rounded-lg border border-orange-500">
+                          <Icon name="Smartphone" className="text-orange-400" size={20} />
+                          <span className="text-sm font-medium text-orange-300">СБП</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <Button
+                    onClick={async () => {
+                      setIsSubmitting(true);
+                      try {
+                        const response = await fetch('https://functions.poehali.dev/2eb755f2-95c5-4f5f-b161-c3159102412d', {
+                          method: 'POST',
+                          headers: {
+                            'Content-Type': 'application/json',
+                          },
+                          body: JSON.stringify(orderForm)
+                        });
+
+                        if (response.ok) {
+                          setIsOrderDialogOpen(false);
+                          navigate('/order-success');
+                        } else {
+                          toast({
+                            title: "Ошибка отправки",
+                            description: "Попробуйте еще раз",
+                            variant: "destructive"
+                          });
+                        }
+                      } catch (error) {
+                        toast({
+                          title: "Ошибка соединения",
+                          description: "Проверьте интернет-соединение",
+                          variant: "destructive"
+                        });
+                      } finally {
+                        setIsSubmitting(false);
+                      }
+                    }}
+                    disabled={isSubmitting}
+                    className="w-full h-12 gradient-primary"
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <Icon name="Loader2" className="mr-2 animate-spin" />
+                        Отправка...
+                      </>
+                    ) : (
+                      <>
+                        <Icon name="CheckCircle2" className="mr-2" />
+                        Подтвердить и отправить
+                      </>
+                    )}
+                  </Button>
+                </div>
+              </DialogContent>
+            </Dialog>
             </section>
 
             <section className="text-center space-y-8 py-12 animate-fade-in">
@@ -296,11 +461,23 @@ const Index = () => {
                 Присоединяйтесь к тысячам довольных пользователей ArtSpace
               </p>
               <div className="flex flex-wrap gap-4 justify-center">
-                <Button size="lg" className="h-16 px-12 text-xl gradient-primary hover:scale-105 transition-transform">
+                <Button 
+                  size="lg" 
+                  onClick={() => {
+                    const element = document.getElementById('order-section');
+                    element?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="h-16 px-12 text-xl gradient-primary hover:scale-105 transition-transform"
+                >
                   <Icon name="Brush" className="mr-2" size={24} />
                   Создать заказ
                 </Button>
-                <Button size="lg" variant="outline" className="h-16 px-12 text-xl border-2 hover:scale-105 transition-transform">
+                <Button 
+                  size="lg" 
+                  variant="outline" 
+                  onClick={() => window.open('sms:89208180793', '_self')}
+                  className="h-16 px-12 text-xl border-2 hover:scale-105 transition-transform"
+                >
                   <Icon name="Users" className="mr-2" size={24} />
                   Стать художником
                 </Button>

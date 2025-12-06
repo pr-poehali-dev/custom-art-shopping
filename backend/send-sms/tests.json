@@ -1,0 +1,27 @@
+{
+  "tests": [
+    {
+      "name": "Send order SMS notification",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "theme": "Портрет",
+        "description": "Нужен портрет в стиле аниме",
+        "budget": "500",
+        "contact": "@testuser"
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "success": true,
+        "message": "string"
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Handle OPTIONS request",
+      "method": "OPTIONS",
+      "path": "/",
+      "expectedStatus": 200
+    }
+  ]
+}
