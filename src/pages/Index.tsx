@@ -311,9 +311,20 @@ const Index = () => {
                   <Icon name="MessageCircle" className="text-muted-foreground cursor-pointer hover:text-primary transition-colors" />
                   <Icon name="Instagram" className="text-muted-foreground cursor-pointer hover:text-primary transition-colors" />
                 </div>
-                <p className="text-sm text-muted-foreground pt-4">
-                  © 2024 ArtSpace. Творим будущее вместе
-                </p>
+                <div className="space-y-2 pt-4">
+                  <a 
+                    href="https://keep.down.the.com" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-sm text-primary hover:text-secondary transition-colors font-medium"
+                  >
+                    <Icon name="ExternalLink" size={16} />
+                    keep/down/the.com
+                  </a>
+                  <p className="text-sm text-muted-foreground">
+                    © 2024 ArtSpace. Творим будущее вместе
+                  </p>
+                </div>
               </div>
             </div>
           </footer>
