@@ -35,7 +35,7 @@ const Index = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50">
+    <div className="min-h-screen bg-gradient-to-br from-gray-800 via-gray-700 to-orange-900">
       {!isLoggedIn ? (
         <div className="min-h-screen flex items-center justify-center p-4">
           <div className="text-center space-y-8 max-w-2xl">
@@ -82,7 +82,7 @@ const Index = () => {
         </div>
       ) : (
         <>
-          <header className="sticky top-0 z-50 backdrop-blur-lg bg-white/80 border-b border-border">
+          <header className="sticky top-0 z-50 backdrop-blur-lg bg-gray-800/90 border-b border-border">
             <div className="container mx-auto px-4 py-4 flex items-center justify-between">
               <div className="flex items-center gap-4">
                 <img 
@@ -181,7 +181,7 @@ const Index = () => {
 
               <div className="grid md:grid-cols-3 gap-8">
                 {reviews.map((review, index) => (
-                  <Card key={index} className="hover-scale bg-gradient-to-br from-white to-purple-50 border-2 hover:border-primary transition-all">
+                  <Card key={index} className="hover-scale bg-gradient-to-br from-gray-700 to-gray-800 border-2 hover:border-primary transition-all">
                     <CardHeader>
                       <div className="flex items-center gap-4 mb-4">
                         <div className="w-16 h-16 rounded-full gradient-primary flex items-center justify-center text-3xl">
@@ -259,35 +259,35 @@ const Index = () => {
                   </Button>
 
                   <div className="space-y-4">
-                    <div className="p-4 rounded-lg bg-green-50 border border-green-200">
+                    <div className="p-4 rounded-lg bg-green-900/20 border border-green-700">
                       <div className="flex gap-3">
-                        <Icon name="ShieldCheck" className="text-green-600 flex-shrink-0" size={24} />
+                        <Icon name="ShieldCheck" className="text-green-400 flex-shrink-0" size={24} />
                         <div className="space-y-1">
-                          <p className="font-semibold text-green-900">Безопасная оплата</p>
-                          <p className="text-sm text-green-700">
+                          <p className="font-semibold text-green-300">Безопасная оплата</p>
+                          <p className="text-sm text-green-400">
                             Средства защищены до полного завершения работы. Вы платите только после получения результата и подтверждения качества.
                           </p>
                         </div>
                       </div>
                     </div>
 
-                    <div className="p-4 rounded-lg bg-blue-50 border border-blue-200">
+                    <div className="p-4 rounded-lg bg-blue-900/20 border border-blue-700">
                       <div className="space-y-3">
                         <div className="flex items-center gap-2">
-                          <Icon name="CreditCard" className="text-blue-600" size={20} />
-                          <p className="font-semibold text-blue-900">Способы оплаты</p>
+                          <Icon name="CreditCard" className="text-blue-400" size={20} />
+                          <p className="font-semibold text-blue-300">Способы оплаты</p>
                         </div>
                         <div className="flex flex-wrap gap-3">
-                          <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg border border-blue-200 hover:border-blue-400 transition-colors">
-                            <Icon name="CreditCard" className="text-blue-600" size={24} />
-                            <span className="text-sm font-medium text-blue-900">Банковская карта</span>
+                          <div className="flex items-center gap-2 px-4 py-2 bg-gray-800 rounded-lg border border-orange-500 hover:border-orange-400 transition-colors">
+                            <Icon name="CreditCard" className="text-orange-400" size={24} />
+                            <span className="text-sm font-medium text-orange-300">Банковская карта</span>
                           </div>
-                          <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg border border-blue-200 hover:border-blue-400 transition-colors">
-                            <Icon name="Smartphone" className="text-blue-600" size={24} />
-                            <span className="text-sm font-medium text-blue-900">СБП</span>
+                          <div className="flex items-center gap-2 px-4 py-2 bg-gray-800 rounded-lg border border-orange-500 hover:border-orange-400 transition-colors">
+                            <Icon name="Smartphone" className="text-orange-400" size={24} />
+                            <span className="text-sm font-medium text-orange-300">СБП</span>
                           </div>
                         </div>
-                        <p className="text-xs text-blue-700">
+                        <p className="text-xs text-blue-400">
                           Принимаем все популярные карты: Visa, Mastercard, МИР. Моментальная оплата через Систему быстрых платежей.
                         </p>
                       </div>
@@ -315,7 +315,7 @@ const Index = () => {
             </section>
           </main>
 
-          <footer className="bg-gradient-to-br from-purple-100 to-pink-100 border-t border-border mt-24">
+          <footer className="bg-gradient-to-br from-gray-900 to-orange-950 border-t border-border mt-24">
             <div className="container mx-auto px-4 py-12">
               <div className="text-center space-y-4">
                 <h4 className="text-2xl font-bold text-gradient">ArtSpace</h4>
