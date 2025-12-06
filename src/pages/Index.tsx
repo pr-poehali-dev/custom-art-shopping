@@ -95,17 +95,10 @@ const Index = () => {
               
               <button
                 onClick={() => setIsLoggedIn(false)}
-                className="group relative w-16 h-16 hover:scale-110 transition-transform"
+                className="group relative w-16 h-16 hover:scale-110 transition-transform flex items-center justify-center"
                 aria-label="Выход"
               >
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-12 h-12 border-[6px] border-black" 
-                       style={{ 
-                         clipPath: 'polygon(50% 0%, 100% 100%, 0% 100%)',
-                         transform: 'rotate(45deg)'
-                       }} 
-                  />
-                </div>
+                <Icon name="X" size={32} className="text-primary hover:text-secondary transition-colors" />
               </button>
             </div>
           </header>
