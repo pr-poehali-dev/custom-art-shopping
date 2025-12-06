@@ -59,7 +59,7 @@ const Index = () => {
             
             <div className="flex items-center justify-center gap-8 pt-8 flex-wrap">
               <div className="text-center">
-                <div className="text-4xl font-bold text-primary">500₽</div>
+                <div className="text-4xl font-bold text-primary">20₽</div>
                 <div className="text-sm text-muted-foreground">от</div>
               </div>
               <div className="text-center">
@@ -126,7 +126,7 @@ const Index = () => {
                     </div>
                     <CardTitle className="text-2xl">Честные цены</CardTitle>
                     <CardDescription className="text-lg">
-                      От 500₽ за арт. Никаких скрытых комиссий и накруток. Художник получает 90% от суммы заказа.
+                      От 20₽ за арт. Никаких скрытых комиссий и накруток. Художник получает 90% от суммы заказа.
                     </CardDescription>
                   </CardHeader>
                 </Card>
@@ -225,7 +225,7 @@ const Index = () => {
                   <div className="grid md:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="budget" className="text-base">Бюджет (₽) *</Label>
-                      <Input id="budget" type="number" placeholder="от 500" className="h-12 text-base" />
+                      <Input id="budget" type="number" placeholder="от 20" className="h-12 text-base" />
                     </div>
 
                     <div className="space-y-2">
