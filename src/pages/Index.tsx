@@ -42,7 +42,7 @@ const Index = () => {
             <div className="space-y-4">
               <div className="flex justify-center mb-8">
                 <img 
-                  src="https://cdn.poehali.dev/files/1722aa41-83e6-425e-9ab6-c4b9e5fce1c4.jpg" 
+                  src="https://cdn.poehali.dev/files/6d00876d-7be6-4a7c-8013-f3d1605891a8.png" 
                   alt="Geqowp Logo" 
                   className="w-64 h-64 object-contain animate-scale-in hover:scale-110 transition-transform"
                 />
@@ -86,7 +86,7 @@ const Index = () => {
             <div className="container mx-auto px-4 py-4 flex items-center justify-between">
               <div className="flex items-center gap-4">
                 <img 
-                  src="https://cdn.poehali.dev/files/1722aa41-83e6-425e-9ab6-c4b9e5fce1c4.jpg" 
+                  src="https://cdn.poehali.dev/files/6d00876d-7be6-4a7c-8013-f3d1605891a8.png" 
                   alt="Geqowp Logo" 
                   className="w-12 h-12 object-contain"
                 />
