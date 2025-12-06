@@ -244,13 +244,37 @@ const Index = () => {
                     Отправить заказ
                   </Button>
 
-                  <div className="p-4 rounded-lg bg-green-50 border border-green-200">
-                    <div className="flex gap-3">
-                      <Icon name="ShieldCheck" className="text-green-600 flex-shrink-0" size={24} />
-                      <div className="space-y-1">
-                        <p className="font-semibold text-green-900">Безопасная оплата</p>
-                        <p className="text-sm text-green-700">
-                          Средства защищены до полного завершения работы. Вы платите только после получения результата и подтверждения качества.
+                  <div className="space-y-4">
+                    <div className="p-4 rounded-lg bg-green-50 border border-green-200">
+                      <div className="flex gap-3">
+                        <Icon name="ShieldCheck" className="text-green-600 flex-shrink-0" size={24} />
+                        <div className="space-y-1">
+                          <p className="font-semibold text-green-900">Безопасная оплата</p>
+                          <p className="text-sm text-green-700">
+                            Средства защищены до полного завершения работы. Вы платите только после получения результата и подтверждения качества.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="p-4 rounded-lg bg-blue-50 border border-blue-200">
+                      <div className="space-y-3">
+                        <div className="flex items-center gap-2">
+                          <Icon name="CreditCard" className="text-blue-600" size={20} />
+                          <p className="font-semibold text-blue-900">Способы оплаты</p>
+                        </div>
+                        <div className="flex flex-wrap gap-3">
+                          <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg border border-blue-200 hover:border-blue-400 transition-colors">
+                            <Icon name="CreditCard" className="text-blue-600" size={24} />
+                            <span className="text-sm font-medium text-blue-900">Банковская карта</span>
+                          </div>
+                          <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg border border-blue-200 hover:border-blue-400 transition-colors">
+                            <Icon name="Smartphone" className="text-blue-600" size={24} />
+                            <span className="text-sm font-medium text-blue-900">СБП</span>
+                          </div>
+                        </div>
+                        <p className="text-xs text-blue-700">
+                          Принимаем все популярные карты: Visa, Mastercard, МИР. Моментальная оплата через Систему быстрых платежей.
                         </p>
                       </div>
                     </div>
