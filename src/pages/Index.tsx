@@ -40,6 +40,13 @@ const Index = () => {
         <div className="min-h-screen flex items-center justify-center p-4">
           <div className="text-center space-y-8 max-w-2xl">
             <div className="space-y-4">
+              <div className="flex justify-center mb-8">
+                <img 
+                  src="https://cdn.poehali.dev/files/1722aa41-83e6-425e-9ab6-c4b9e5fce1c4.jpg" 
+                  alt="Geqowp Logo" 
+                  className="w-64 h-64 object-contain animate-scale-in hover:scale-110 transition-transform"
+                />
+              </div>
               <h1 className="text-6xl md:text-8xl font-bold text-gradient animate-fade-in">
                 ArtSpace
               </h1>
@@ -77,7 +84,14 @@ const Index = () => {
         <>
           <header className="sticky top-0 z-50 backdrop-blur-lg bg-white/80 border-b border-border">
             <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-              <h1 className="text-3xl font-bold text-gradient">ArtSpace</h1>
+              <div className="flex items-center gap-4">
+                <img 
+                  src="https://cdn.poehali.dev/files/1722aa41-83e6-425e-9ab6-c4b9e5fce1c4.jpg" 
+                  alt="Geqowp Logo" 
+                  className="w-12 h-12 object-contain"
+                />
+                <h1 className="text-3xl font-bold text-gradient">ArtSpace</h1>
+              </div>
               
               <button
                 onClick={() => setIsLoggedIn(false)}
